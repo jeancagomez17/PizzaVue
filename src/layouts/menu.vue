@@ -1,5 +1,6 @@
 <script>
 import Modal from '../components/modal.vue';
+import store from "../store";
 
 export default {
     data() {
@@ -7,7 +8,7 @@ export default {
             componentNew: null,
             prodiedad: "",
             active: false,
-            showMenu:false
+            showMenu:false,
         };
     },
     methods: {
@@ -21,6 +22,15 @@ export default {
             } else return this.showMenu = true;
         }
     },
+    computed:{
+      carrito(){
+        return this.$store.state.carrito.length
+      }, 
+      showModal(){
+        if(this.carrito == 0) return this.showMenu = false
+      }
+    },
+    
     components: { Modal }
 }
 </script>
@@ -33,9 +43,11 @@ export default {
             <li><router-link class="hover" :to="{name:'detail', query:{id:5}}">PROMOS</router-link></li>
             <li><router-link class="hover" to="/" >ORDERS</router-link></li>
             <li><router-link class="hover" to="/" >ABOUT</router-link></li>
-            <li> <a class="hover" @click="mostrarCarrito">Carrito</a></li>
+            <li><a class="hover" @click="mostrarCarrito" >CARRITO {{carrito}} </a> </li>
+           
         </ul>
     </div>
+    
     <modal :show="showMenu"></modal>
     
 </template>
@@ -48,9 +60,11 @@ export default {
     align-items: center;
     height: 50px;
     background: linear-gradient(black, transparent);
+    
 }
 .header-list{
     margin-right: 10px;
+    
 }
 
 .header ul {
@@ -70,10 +84,15 @@ export default {
     text-decoration: none;
     border-radius: 5px;
     color: white;
+    
+}
+.header ul li sup{
+    padding: 10px;
+    font-size: 15pt;
 }
 
 .hover:hover {
-
+    color:white;
     background-color: #ff4701;
     transition: all ease-in-out .4s;
 }

@@ -28,7 +28,6 @@ export default{
             <div class="title">
                 <h3>Encuentra lo mejor de la pizza Italiana</h3>
                 <h1>Pizzeria Rome </h1>
-                
                 <button @click="add('test')"> VIEW MENU</button>
             </div>
             

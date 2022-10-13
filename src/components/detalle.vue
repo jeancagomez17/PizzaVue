@@ -26,17 +26,19 @@ export default{
             const exist = this.$store.state.carrito.some(item => item.id === x);
             console.log(exist);
             if (!exist) {
-                const dataOne = { ...data[x - 1], contador:this.data.count };
+                const dataOne = { ...data[x - 1], contador:this.count };
                 this.$store.commit("addCarrito", {
                     product: dataOne
                 });
+                this.count = 1
             }
             else {
                 return alert("Ya se agrego el producto");
             }
         },
         updateQuantiy(value){
-        console.log(value)
+        
+        this.count = Number(value)
         this.data.count = Number(value);
       }
     },

@@ -32,6 +32,7 @@ export default {
     methods: {
       updateQuantiy(value){
         this.datos.count = Number(value);
+        this.count = Number(value)
       },
         ruta(id) {
             return this.$router.push({ name: "detail", query: { id: id } });
@@ -40,14 +41,13 @@ export default {
         addPro(x){
           
           const exist = this.$store.state.carrito.some(item => item.id === x);
+          const dataOne = {...data[x - 1], contador: 1 ? this.count : 1} 
           if(!exist){
-            
-            const dataOne = {...data[x - 1], contador: 1 ? this.datos.count : 1} 
                 this.$store.commit('addCarrito', {
                 product:dataOne
             })
-            return alert('Product ok')
-          } else return alert('Ya se agrego el producto')   
+            this.count = 1
+          }  
         },
        
       
