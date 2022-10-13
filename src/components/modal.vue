@@ -78,12 +78,14 @@ export default {
   height: 500px;
   text-align: center;
   word-wrap: break-word;
+  right: 0;
 }
 .modal .modal-header{
   display: flex;
   justify-content: space-between;
   background-color: #9ab5bc;
   padding: 10px 20px;
+ 
 }
 .btnModal{
   width:25px;
